@@ -6,24 +6,35 @@
     <%- include('./partials/nav.ejs') %>
     <main class="main">
         <div class="container">
-            <section class="blog-list">
-                <% if(blogs.length ){ %>
+            <% if(blogs.length) { %>
+                <section class="hero">
+                    <h2 class="hero__title">Latest Posts</h2>
+                    <p class="hero__subtitle">Thoughts on technology, development, and the modern web.</p>
+                </section>
+
+                <section class="blog-list">
+                    <div class="blog-list-header">
+                        <span class="blog-list-header__title">All Posts</span>
+                        <span class="blog-list-header__count"><%= blogs.length %> article<%= blogs.length !== 1 ? 's' : '' %></span>
+                    </div>
                     <% blogs.forEach(blog => { %>
-                        <a class="single" href="/blogs/<%= blog.id %>" >
-                        <article class="blog-card">
-                            <h3 class="blog-card__title"><%= blog.title %></h3>
-                            <p class="blog-card__snippet"><%= blog.snippet %></p>
-                        </article>
+                        <a class="single" href="/blogs/<%= blog.id %>">
+                            <article class="blog-card">
+                                <h3 class="blog-card__title"><%= blog.title %></h3>
+                                <p class="blog-card__snippet"><%= blog.snippet %></p>
+                                <span class="blog-card__read-more">Read more</span>
+                            </article>
                         </a>
                     <% }); %>
-                <% } else { %>
-                    <div class="empty-state">
-                        <h2 class="empty-state__title">No Blogs Found</h2>
-                        <p class="empty-state__message">There are no blog posts yet. Start writing today!</p>
-                        <a href="/blogs/create" class="btn btn--primary">Create First Post</a>
-                    </div>
-                <% } %>
-            </section>
+                </section>
+            <% } else { %>
+                <section class="empty-state">
+                    <span class="empty-state__icon">✍️</span>
+                    <h2 class="empty-state__title">No Posts Yet</h2>
+                    <p class="empty-state__message">Start sharing your ideas with the world. Create your first blog post today.</p>
+                    <a href="/blogs/create" class="btn btn--primary">Create First Post</a>
+                </section>
+            <% } %>
         </div>
     </main>
     <%- include('./partials/footer.ejs') %>

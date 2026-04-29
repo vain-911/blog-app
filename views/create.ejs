@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <%- include('./partials/head.ejs') %>
     <body>
         <%- include('./partials/nav.ejs') %>
 
         <main class="main">
             <div class="container">
-                <div class="create content">
-                    <h2 class="form__title">Create a New Blog Post</h2>
+                <div class="form-wrapper">
+                    <h2 class="form__title">Create a New Post</h2>
+                    <p class="form__subtitle">Share your thoughts with the world.</p>
 
                     <form action="/blogs" method="POST" class="form">
 
                         <div class="form__group">
                             <label for="title" class="form__label">Title</label>
-                            <input type="text" id="title" name="title" class="form__control" placeholder="Blog Title" required>
+                            <input type="text" id="title" name="title" class="form__control" placeholder="Give your post a title" required>
                         </div>
 
                         <div class="form__group">
                             <label for="snippet" class="form__label">Snippet</label>
-                            <input type="text" id="snippet" name="snippet" class="form__control" placeholder="Blog Snippet" required>
+                            <input type="text" id="snippet" name="snippet" class="form__control" placeholder="A brief summary of your post" required>
                         </div>
 
                         <div class="form__group">
                             <label for="content" class="form__label">Content</label>
-                            <textarea id="content" name="content" class="form__control" rows="8" placeholder="Blog Content" required></textarea>
+                            <textarea id="content" name="content" class="form__control" rows="8" placeholder="Write your post content here..." required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn--primary form__submit">Submit</button>
+                        <button type="submit" class="btn btn--primary btn--block form__submit">Publish Post</button>
                     </form>
                 </div>
             </div>
         </main>
 
         <%- include('./partials/footer.ejs') %>
-              
+    </body>
+</html>

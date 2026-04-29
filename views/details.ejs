@@ -6,16 +6,20 @@
 
     <main class="main">
       <div class="container">
-        <article class="blog-card">
-          <p class="mb-4"><a href="/blogs" class="text-muted">&larr; Back to home</a></p>
+        <article class="blog-detail">
+          <a href="/blogs" class="blog-detail__back">All posts</a>
 
-          <h1 class="mb-3"><%= blog.title %></h1>
-          <p class="text-muted mb-4"><%= blog.snippet %></p>
+          <h1 class="blog-detail__title"><%= blog.title %></h1>
+          <p class="blog-detail__snippet"><%= blog.snippet %></p>
 
-          <div class="content mb-6"><%- blog.content %></div>
+          <hr class="blog-detail__divider">
 
-          <div class="gap-4 flex">
-            <a class="btn btn--secondary delete" data-doc="<%= blog.id %>">Delete</a>
+          <div class="blog-detail__content"><%- blog.content %></div>
+
+          <div class="blog-detail__actions">
+            <a href="/blogs" class="btn btn--secondary">Back to Posts</a>
+            <a href="/blogs/edit/<%= blog.id %>" class="btn btn--primary">Update Post</a>
+            <a class="btn btn--danger delete" data-doc="<%= blog.id %>">Delete Post</a>
           </div>
         </article>
       </div>

@@ -36,6 +36,27 @@ router.post('/', (req, res) => {
       res.status(500).send('Server error');
     });
 });
+router.get('/edit/:id', (req, res)=>{
+    const id = req.params.id;
+
+    Blog.findById(id).then((result)=>{
+        res.render('edit', {title: 'Edit Blog', blog: result});
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
+router.put('/:id', (req, res)=>{
+    const id = req.params.id;
+
+    Blog.findByIdAndUpdate(id, req.body).then((result)=>{
+        res.json({ redirect: `/blogs/${id}` });
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).json({ error: 'Server error' });
+    })
+})
+
 router.delete('/:id', (req, res)=>{
     const id = req.params.id;
 

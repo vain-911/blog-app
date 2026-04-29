@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <main class="main">
+      <div class="container">
+        <div class="create content">
+          <h2 class="form__title">Edit Blog Post</h2>
+
+          <form id="edit-form" class="form" data-doc="<%= blog.id %>">
+
+            <div class="form__group">
+              <label for="title" class="form__label">Title</label>
+              <input type="text" id="title" name="title" class="form__control"
+                     value="<%= blog.title %>" required>
+            </div>
+
+            <div class="form__group">
+              <label for="snippet" class="form__label">Snippet</label>
+              <input type="text" id="snippet" name="snippet" class="form__control"
+                     value="<%= blog.snippet %>" required>
+            </div>
+
+            <div class="form__group">
+              <label for="content" class="form__label">Content</label>
+              <textarea id="content" name="content" class="form__control"
+                        rows="8" required><%= blog.content %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary form__submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+    const editForm = document.querySelector('#edit-form');
+    const id = editForm.dataset.doc;
+    const endpoint = `/blogs/${id}`;
+
+    editForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const formData = new URLSearchParams(new FormData(editForm));
+
+      fetch(endpoint, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      }).then(response=>{
+        return response.json();
+      }).then((data)=>{
+        window.location.href = data.redirect;
+      }).catch(err=>{
+        console.log(err);
+      });
+    })
+    </script>
+  </body>
+</html>
