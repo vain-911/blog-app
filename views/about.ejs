@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+  <%- include('./partials/nav.ejs') %>
+
+  <main class="main">
+    <div class="container">
+      <section class="about">
+        <h1 class="about__title">About Macro Blog</h1>
+        <p class="about__description">A clean, minimal blogging platform built with Node.js, Express, EJS, and MongoDB. Designed for learning and quick prototyping — responsive, focused, and easy to extend.</p>
+
+        <div class="about__section">
+          <h2 class="about__section-title">Our goals</h2>
+          <div class="about__list">
+            <div class="about__list-item">Keep the design minimal and readable</div>
+            <div class="about__list-item">Provide a smooth writing experience</div>
+            <div class="about__list-item">Be easy to extend with features like authentication, comments, and tagging</div>
+          </div>
+        </div>
+
+        <div class="about__section">
+          <h2 class="about__section-title">Get started</h2>
+          <p class="text-muted mb-6">Create your first post and see it appear on the home page.</p>
+          <a href="/blogs/create" class="btn btn--primary">Create a Post</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

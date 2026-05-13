@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+      <html lang="en">
+        <%- include('./partials/head.ejs') %>
+        <body>
+          <%- include('./partials/nav.ejs') %>
+
+          <main class="main">
+            <div class="container">
+              <div class="form-wrapper auth-wrapper">
+                <h2 class="form__title">Login to Your Account</h2>
+                <p class="form__subtitle">Sign in to create and manage your blog posts.</p>
+
+                <div id="auth-container">
+                  <form id="login-form" novalidate>
+                    <div class="form__group">
+                      <label for="email" class="form__label">Email</label>
+                      <input name="email" type="email" id="email" class="form__control" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form__group">
+                      <label for="password" class="form__label">Password</label>
+                      <div class="password-input">
+                        <input name="password" type="password" id="password" class="form__control" placeholder="Enter your password" required>
+                        <button type="button" id="toggle-password" class="password-toggle" aria-label="Show password">Show</button>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <label class="form__help"><input type="checkbox" id="remember" name="remember"> Remember me</label>
+                      <a href="/forgot" class="form__help">Forgot?</a>
+                    </div>
+
+                    <div id="error-message" class="error-box hidden" role="alert" aria-live="polite"></div>
+                    <div id="success-message" class="success-box hidden" role="status" aria-live="polite"></div>
+
+                    <button id="login-btn" type="submit" class="btn btn--primary btn--block form__submit">Sign In</button>
+                  </form>
+
+                  <div class="form-foot">
+                    <p>Don't have an account? <a href="#" id="toggle-signup" class="link-toggle">Sign up</a></p>
+                  </div>
+                </div>
+
+                <div id="signup-container" class="hidden">
+                  <form id="signup-form" novalidate>
+                    <div class="form__group">
+                      <label for="signup-email" class="form__label">Email</label>
+                      <input name="email" type="email" id="signup-email" class="form__control" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form__group">
+                      <label for="signup-password" class="form__label">Password</label>
+                      <div class="password-input">
+                        <input name="password" type="password" id="signup-password" class="form__control" placeholder="At least 6 characters" required>
+                        <button type="button" id="toggle-signup-password" class="password-toggle" aria-label="Show password">Show</button>
+                      </div>
+                    </div>
+
+                    <div id="signup-error-message" class="error-box hidden" role="alert" aria-live="polite"></div>
+                    <div id="signup-success-message" class="success-box hidden" role="status" aria-live="polite"></div>
+
+                    <button id="signup-btn" type="submit" class="btn btn--primary btn--block form__submit">Create Account</button>
+                  </form>
+
+                  <div class="form-foot">
+                    <p>Already have an account? <a href="#" id="toggle-login" class="link-toggle">Sign in</a></p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </main>
+
+          <%- include('./partials/footer.ejs') %>
+
+          <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+          <div id="supabase-config" data-url="<%= SUPABASE_URL %>" data-key="<%= SUPABASE_ANON_KEY %>" style="display:none"></div>
+          <script src="/js/login.js"></script>
+        </body>
+      </html>

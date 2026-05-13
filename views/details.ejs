@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <main class="main">
+      <div class="container">
+        <article class="blog-detail">
+          <a href="/blogs" class="blog-detail__back">All posts</a>
+
+          <h1 class="blog-detail__title"><%= blog.title %></h1>
+          <p class="blog-detail__snippet"><%= blog.snippet %></p>
+
+          <% if (blog.imagePath) { %>
+            <img src="<%= blog.imagePath %>" alt="<%= blog.title %>" class="blog-detail__image">
+          <% } %>
+
+          <hr class="blog-detail__divider">
+
+          <div class="blog-detail__content"><%= blog.content %></div>
+
+          <div class="blog-detail__actions">
+            <a href="/blogs" class="btn btn--secondary">Back to Posts</a>
+
+            <% if (typeof isOwner !== 'undefined' && isOwner) { %>
+              <a href="/blogs/edit/<%= blog.id %>" class="btn btn--primary" data-author="<%= blog.authorId %>">Update Post</a>
+              <a class="btn btn--danger delete" data-doc="<%= blog.id %>" data-author="<%= blog.authorId %>">Delete Post</a>
+            <% } else { %>
+              <a href="/blogs/edit/<%= blog.id %>" class="btn btn--primary owner-only" data-author="<%= blog.authorId %>">Update Post</a>
+              <a class="btn btn--danger delete owner-only" data-doc="<%= blog.id %>" data-author="<%= blog.authorId %>">Delete Post</a>
+            <% } %>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script src="/js/details.js"></script>
+  </body>
+</html>
